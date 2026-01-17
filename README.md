@@ -1,5 +1,11 @@
 A full-stack Java Spring Boot 3.2 application for tracking cryptocurrency portfolios with real-time price updates, user authentication, and profit/loss calculations.
 
+## 🚀 Quick Deploy to Railway
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new)
+
+**Deploy in 5 minutes!** See [QUICK_START.md](QUICK_START.md) for Railway deployment guide.
+
 ✨ Features
 
 🔐 JWT Authentication with BCrypt encryption
@@ -37,6 +43,19 @@ FLUSH PRIVILEGES;
 The application will automatically create the crypto_portfolio database on first run.
 
 🚀 Installation & Running
+
+### Option 1: Deploy to Railway (Recommended for Production)
+
+See [QUICK_START.md](QUICK_START.md) or [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for detailed instructions.
+
+**Quick steps:**
+1. Push code to GitHub
+2. Connect to Railway
+3. Add MySQL database
+4. Set environment variables
+5. Deploy! 🎉
+
+### Option 2: Run Locally
 
 1️⃣ Clone the repository
 git clone https://github.com/amarsacharya/CRYPTO_PROJ01.git
@@ -124,6 +143,21 @@ VALUES ('NEW', 'New Crypto', 100.00, NOW());
 
 Changing price update frequency
 Modify @Scheduled in CryptocurrencyService.java
+
+## 🌐 Deployment
+
+This application is ready for deployment on:
+- **Railway** (Recommended) - See [QUICK_START.md](QUICK_START.md)
+- **Render**
+- **Heroku**
+- **AWS Elastic Beanstalk**
+- **Google Cloud Run**
+
+All necessary configuration files are included:
+- `railway.toml` - Railway configuration
+- `nixpacks.toml` - Build configuration
+- `Procfile` - Process definition
+- `application-prod.yml` - Production settings
 
 🐞 Troubleshooting
 

@@ -1,0 +1,125 @@
+╔══════════════════════════════════════════════════════════════╗
+║         RAILWAY DEPLOYMENT - QUICK REFERENCE CARD            ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 PRE-DEPLOYMENT CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ All configuration files created
+✅ Production config ready (application-prod.yml)
+✅ Build tested successfully
+✅ Code ready for GitHub
+
+🔑 GENERATE JWT SECRET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Windows: Run generate-jwt-secret.bat
+Or PowerShell:
+[Convert]::ToBase64String((1..32 | ForEach-Object { Get-Random -Maximum 256 }))
+
+📦 PUSH TO GITHUB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+git init
+git add .
+git commit -m "Ready for Railway deployment"
+git remote add origin <your-github-repo-url>
+git push -u origin main
+
+🚀 DEPLOY ON RAILWAY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Go to: https://railway.app
+2. Click: "New Project"
+3. Select: "Deploy from GitHub repo"
+4. Choose: Your repository
+5. Click: "New" → "Database" → "Add MySQL"
+6. Add Variables:
+   - SPRING_PROFILES_ACTIVE = prod
+   - JWT_SECRET = <your-generated-secret>
+7. Wait 3-5 minutes for deployment
+
+🌐 YOUR APP URLS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Main App:    https://your-app.up.railway.app
+Swagger UI:  https://your-app.up.railway.app/swagger-ui/index.html
+API Docs:    https://your-app.up.railway.app/api-docs
+
+⚙️ ENVIRONMENT VARIABLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Required:
+  SPRING_PROFILES_ACTIVE = prod
+  JWT_SECRET = <32+ character string>
+
+Auto-set by Railway:
+  DATABASE_URL = <Railway MySQL connection>
+  PORT = <Railway assigns port>
+
+🔄 UPDATE YOUR APP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+git add .
+git commit -m "Update"
+git push
+
+Railway auto-deploys on every push to main branch!
+
+💰 COST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Free Tier:     $5/month credit
+Typical Cost:  $5-10/month (app + MySQL)
+
+🐛 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Build fails?
+  → Check Railway logs (Deployments tab)
+  → Verify Java 21 in build logs
+
+Database error?
+  → Ensure MySQL service is running
+  → Check DATABASE_URL is set
+
+App crashes?
+  → View runtime logs
+  → Verify JWT_SECRET is set (32+ chars)
+
+Port error?
+  → Railway sets PORT automatically
+  → Check application-prod.yml uses ${PORT:8080}
+
+📚 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Quick Start:        QUICK_START.md
+Detailed Guide:     RAILWAY_DEPLOYMENT.md
+Checklist:          DEPLOYMENT_CHECKLIST.md
+Changes Made:       CHANGES_FOR_RAILWAY.md
+
+🛠️ HELPER SCRIPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+generate-jwt-secret.bat       → Generate JWT secret
+test-production-build.bat     → Test build locally
+
+⏱️ DEPLOYMENT TIME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Build:    2-3 minutes
+Startup:  30-60 seconds
+Total:    ~5 minutes
+
+✨ FEATURES THAT WORK ON RAILWAY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ JWT Authentication
+✅ User Management
+✅ Portfolio & Holdings CRUD
+✅ Real-time price updates (every 5 minutes)
+✅ Automatic profit/loss calculation
+✅ Swagger UI documentation
+✅ Responsive frontend
+✅ Scheduled tasks
+✅ Database migrations
+
+🎯 NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Run: generate-jwt-secret.bat
+2. Push to GitHub
+3. Deploy on Railway
+4. Test your live app!
+5. Share your URL! 🎉
+
+═══════════════════════════════════════════════════════════════
+Need help? See QUICK_START.md or RAILWAY_DEPLOYMENT.md
+═══════════════════════════════════════════════════════════════
