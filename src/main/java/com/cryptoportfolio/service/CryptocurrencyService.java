@@ -8,6 +8,7 @@ import com.cryptoportfolio.repository.HoldingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -52,6 +53,7 @@ public class CryptocurrencyService {
 
     // Scheduled task to update prices every 5 minutes
     @Scheduled(fixedRate = 300000) // 5 minutes = 300,000 milliseconds
+    @Transactional
     public void updateCryptocurrencyPrices() {
         System.out.println("Updating cryptocurrency prices...");
         List<Cryptocurrency> cryptocurrencies = cryptocurrencyRepository.findAll();
